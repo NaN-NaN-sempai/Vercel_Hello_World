@@ -36,7 +36,6 @@
         * {
             margin: 0;
         }
-
         body {
             background: var(--bgColor);
             overflow: hidden;
@@ -50,7 +49,6 @@
             display: grid;
             justify-items: center;
         }
-
         .randomDotsContainer {
             opacity: 0;
             width: 100%;
@@ -87,6 +85,13 @@
         .icon:hover {
             animation: cycleOutline infinite ease .5s;
         }
+        .githubLink {
+            margin-top: 20px;
+        }
+        a {
+            text-decoration: underline;
+            color: var(--textColor) ;
+        }
 
         @keyframes cycleOutline {
             0% {
@@ -121,7 +126,13 @@
         <a class="iconLink" href="https://vercel.com/">
             <div class="icon"></div>
         </a>
+        <h1 class="githubLink">
+            By
+            <br>
+            <a href="https://github.com/NaN-NaN-sempai">Luís Henrique de Almeida</a>
+        </h1>
     </div>
+    
 </body>
 
 <script>
