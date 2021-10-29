@@ -173,10 +173,8 @@
             div.style.left = x + 'px';
             div.style.transform = `rotate(${rand(360)}deg)`;
             
-            //div.style.transition = (rand(100) + 900) + 'ms';
-            div.style.transition = `all ${(rand(100) + 900)}ms cubic-bezier(${Math.random()}, ${-.5 + rand(1)}, ${Math.random()}, ${-.5 + rand(1)}) 0s`;
-
-
+            div.style.transition = (rand(100) + 900) + 'ms';
+            
             var randomTone = 50 + rand(205);
 
             div.style.background = `rgba(
