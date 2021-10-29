@@ -141,7 +141,7 @@
 
 <script>
     var randomDotsContainer = document.querySelector('.randomDotsContainer');
-    var dotsAmount = 20;
+    var dotsAmount = 10;
 
     for(i=0; i<dotsAmount; i++){
         var div = document.createElement("div");
@@ -170,8 +170,10 @@
             div.style.left = x + 'px';
             div.style.transform = `rotate(${rand(360)}deg)`;
             
-            div.style.transition = (rand(100) + 900) + 'ms';
-            
+            //div.style.transition = (rand(100) + 900) + 'ms';
+            div.style.transition = `all ${(rand(100) + 900)}ms cubic-bezier(${Math.random()}, ${-.5 + rand(1)}, ${Math.random()}, ${-.5 + rand(1)}) 0s`;
+
+
             var randomTone = 50 + rand(205);
 
             div.style.background = `rgba(
