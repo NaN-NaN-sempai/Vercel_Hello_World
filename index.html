@@ -63,6 +63,9 @@
         .randomDotsContainer div {
             border-radius: 50% 50%;
             position: absolute;
+            /* (0% 87%, 50% 0%, 100% 87%); */
+            
+            clip-path: polygon(0 0, 100% 0, 100% 65%, 75% 65%, 50% 20%, 25% 65%, 100% 65%, 100% 100%, 0 100%);
         }
 
         h1 {
@@ -164,6 +167,7 @@
             div.style.height = w + 'px'; 
             div.style.top = y + 'px'; 
             div.style.left = x + 'px';
+            div.style.transform = `rotate(${rand(360)}deg)`;
             
             div.style.transition = (rand(100) + 900) + 'ms';
             
@@ -173,7 +177,7 @@
                 ${randomTone},
                 ${randomTone},
                 ${randomTone},
-                ${Math.random() + 0.3}
+                ${Math.random() + 0.2}
             )`;
         });
     }
