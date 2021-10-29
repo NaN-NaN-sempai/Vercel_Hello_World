@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vercel, hello world!</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./src/imgs/vercel_logo.png" />
+    <style>
+        :root {
+            --textFont: Arial, Helvetica, sans-serif;   
+            --textColor: white;
+
+            --bgColor: black;
+
+            --iconSize: 100px;
+            --iconBorderColor: var(--textColor);
+            --iconBorderMain: drop-shadow(1px 1px 0 var(--iconBorderColor))
+                              drop-shadow(-1px -1px 0 var(--iconBorderColor))
+                              drop-shadow(-1px 1px 0 var(--iconBorderColor))
+                              drop-shadow(-1px 1px 0 var(--iconBorderColor))
+                              drop-shadow(1px -1px 0 var(--iconBorderColor))
+                              drop-shadow(1px -1px 0 var(--iconBorderColor));
+
+            --iconBorder1: drop-shadow(2px 2px 0 var(--iconBorderColor))
+                           drop-shadow(-2px -2px 0 var(--iconBorderColor));
+
+            --iconBorder2: drop-shadow(-2px -2px 0 var(--iconBorderColor))
+                           drop-shadow(2px 2px 0 var(--iconBorderColor));
+
+            --iconBorder3: drop-shadow(-2px 2px 0 var(--iconBorderColor))
+                           drop-shadow(-2px 2px 0 var(--iconBorderColor));
+                          
+            --iconBorder4: drop-shadow(2px -2px 0 var(--iconBorderColor))
+                           drop-shadow(2px -2px 0 var(--iconBorderColor));
+
+        }
+
+        * {
+            margin: 0;
+        }
+
+        body {
+            background: var(--bgColor);
+            overflow: hidden;
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            transform: translate(50%, -50%);
+            display: grid;
+            justify-items: center;
+        }
+
+        .randomDotsContainer {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            transform: translate(50%, -50%);
+            transition: opacity .5s;
+        }
+        .randomDotsContainer div {
+            border-radius: 50% 50%;
+            position: absolute;
+        }
+
+        h1 {
+            font-family: var(--textFont);
+            color: var(--textColor);
+            text-align: center;
+            margin-bottom: 20px;
+            
+            text-shadow: 0 0 10px black, 0 0 10px black, 0 0 10px black;
+        }
+        .icon {
+            width: var(--iconSize);
+            height: var(--iconSize);
+            background: url("./src/imgs/vercel_logo.png");
+            background-size: contain;
+            -webkit-filter: var(--iconBorderMain);
+            filter: var(--iconBorderMain);
+            animation: none;
+        }
+        .icon:hover {
+            animation: cycleOutline infinite ease .5s;
+        }
+
+        @keyframes cycleOutline {
+            0% {
+                -webkit-filter: var(--iconBorder1);
+                filter: var(--iconBorder1);
+            }
+            25% {                
+                -webkit-filter: var(--iconBorder2);
+                filter: var(--iconBorder2);
+            }
+            50% {                
+                -webkit-filter: var(--iconBorder3);
+                filter: var(--iconBorder3);
+            }
+            100% {                
+                -webkit-filter: var(--iconBorder4);
+                filter: var(--iconBorder4);
+            }
+        }
+        
+        ::selection {
+            color: var(--bgColor);
+            background: var(--textColor);
+        }
+    </style>
+</head>
+<body>
+    <div class="randomDotsContainer"></div>
+
+    <div class="container">
+        <h1>Vercel, hello world!</h1>    
+        <a class="iconLink" href="https://vercel.com/">
+            <div class="icon"></div>
+        </a>
+    </div>
+</body>
+
+<script>
+    var randomDotsContainer = document.querySelector('.randomDotsContainer');
+    var dotsAmount = 20;
+
+    for(i=0; i<dotsAmount; i++){
+        var div = document.createElement("div");
+            
+        randomDotsContainer.append(div);
+    }
+    let divs = randomDotsContainer.querySelectorAll('div');
+
+    const rand = (multi) => parseInt(multi * Math.random() ,10);
+
+    function move(){
+        let ww = window.innerWidth;
+        let wh = window.innerHeight;
+
+        let constraint = Math.min(ww, wh);
+
+        divs.forEach((div) => {
+            let w = 50 + (rand(constraint) / 2);
+            
+            let x = rand((ww - w));
+            let y = rand((wh - w));
+            
+            div.style.width = w + 'px'; 
+            div.style.height = w + 'px'; 
+            div.style.top = y + 'px'; 
+            div.style.left = x + 'px';
+            
+            div.style.transition = (rand(100) + 900) + 'ms';
+            
+            var randomTone = 50 + rand(205);
+
+            div.style.background = `rgba(
+                ${randomTone},
+                ${randomTone},
+                ${randomTone},
+                ${Math.random() + 0.3}
+            )`;
+        });
+    }
+
+    var iconLink = document.querySelector(".iconLink");
+
+    var interval;
+    iconLink.addEventListener("mouseover", () => {
+        randomDotsContainer.style.opacity = 1;
+        move();
+        interval = setInterval(move, 1000);
+    });
+    iconLink.addEventListener("mouseout", () => {
+        randomDotsContainer.style.opacity = 0;
+        clearInterval(interval);
+    });
+
+</script>
+</html>
